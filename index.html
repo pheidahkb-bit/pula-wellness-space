@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pula Wellness Space</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --earth: #1E3A3A;
@@ -16,20 +16,24 @@
     --gold: #B8955A;
     --sky: #7BBDD0;
     --text: #1A2A2A;
+    --fs-xs:   0.875rem;
+    --fs-sm:   1rem;
+    --fs-md:   1.0625rem;
+    --fs-lg:   1.125rem;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: var(--fs-md);
+    line-height: 1.75;
     background: var(--cream);
     color: var(--text);
     overflow-x: hidden;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -37,40 +41,81 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 4rem;
-    background: rgba(247, 240, 230, 0.92);
+    padding: 1rem 3rem;
+    background: rgba(245,242,236,0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(176, 149, 90, 0.2);
+    border-bottom: 1px solid rgba(78,168,184,0.2);
   }
 
   .nav-brand {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--earth);
     text-transform: uppercase;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
 
   .nav-links a {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--soil);
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 500;
     transition: color 0.3s;
   }
 
   .nav-links a:hover { color: var(--terracotta); }
 
-  /* HERO */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--earth);
+    transition: all 0.3s;
+  }
+
+  .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .nav-drawer {
+    display: none;
+    position: fixed;
+    top: 58px; left: 0; right: 0;
+    background: rgba(245,242,236,0.98);
+    padding: 1.5rem 2rem 2rem;
+    border-bottom: 1px solid rgba(78,168,184,0.2);
+    z-index: 99;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-drawer.open { display: flex; }
+
+  .nav-drawer a {
+    font-size: var(--fs-lg);
+    color: var(--earth);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(78,168,184,0.15);
+    letter-spacing: 0.05em;
+  }
+
   #home {
     min-height: 100vh;
     display: flex;
@@ -78,7 +123,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 8rem 2rem 4rem;
+    padding: 7rem 1.5rem 4rem;
     position: relative;
     background:
       radial-gradient(ellipse 80% 60% at 50% 20%, rgba(123,189,208,0.13) 0%, transparent 70%),
@@ -87,224 +132,193 @@
     overflow: hidden;
   }
 
-  /* Decorative circles */
   #home::before {
     content: '';
     position: absolute;
-    width: 600px; height: 600px;
+    width: min(600px, 90vw); height: min(600px, 90vw);
     border-radius: 50%;
-    border: 1px solid rgba(176,149,90,0.15);
+    border: 1px solid rgba(78,168,184,0.15);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
+    pointer-events: none;
   }
+
   #home::after {
     content: '';
     position: absolute;
-    width: 900px; height: 900px;
+    width: min(900px, 130vw); height: min(900px, 130vw);
     border-radius: 50%;
-    border: 1px solid rgba(176,149,90,0.08);
+    border: 1px solid rgba(78,168,184,0.08);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .hero-greeting {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 1.5rem;
-    animation: fadeUp 1s ease forwards;
-    opacity: 0;
+    pointer-events: none;
   }
 
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
     font-weight: 300;
     font-style: italic;
     color: var(--gold);
     letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0;
+    position: relative; z-index: 1;
+  }
+
+  .hero-greeting {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
     margin-bottom: 1rem;
     animation: fadeUp 1s 0.15s ease forwards;
     opacity: 0;
+    position: relative; z-index: 1;
+    font-weight: 500;
   }
 
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-size: clamp(3rem, 10vw, 6.5rem);
     font-weight: 300;
     line-height: 1.05;
     color: var(--earth);
-    letter-spacing: -0.01em;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     animation: fadeUp 1s 0.3s ease forwards;
     opacity: 0;
+    position: relative; z-index: 1;
   }
 
-  .hero-title em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
+  .hero-title em { font-style: italic; color: var(--terracotta); }
 
   .hero-tagline {
-    font-size: 0.95rem;
-    font-weight: 300;
+    font-size: clamp(var(--fs-sm), 2.5vw, var(--fs-lg));
+    font-weight: 400;
     color: var(--soil);
-    max-width: 480px;
-    line-height: 1.9;
-    letter-spacing: 0.02em;
-    margin-bottom: 3rem;
+    max-width: 500px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
     animation: fadeUp 1s 0.45s ease forwards;
     opacity: 0;
+    position: relative; z-index: 1;
   }
 
   .hero-cta {
     display: inline-block;
-    padding: 0.95rem 2.5rem;
+    padding: 1rem 2.5rem;
     background: var(--earth);
     color: var(--cream);
     text-decoration: none;
-    font-size: 0.73rem;
-    letter-spacing: 0.22em;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    font-weight: 600;
     transition: background 0.3s, transform 0.2s;
     animation: fadeUp 1s 0.6s ease forwards;
     opacity: 0;
+    position: relative; z-index: 1;
   }
 
-  .hero-cta:hover {
-    background: var(--terracotta);
-    transform: translateY(-2px);
-  }
+  .hero-cta:hover { background: var(--terracotta); transform: translateY(-2px); }
 
-  /* ABOUT SECTION */
   #about {
-    padding: 8rem 4rem;
+    padding: 6rem 3rem;
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1.6fr;
-    gap: 6rem;
-    align-items: center;
+    gap: 5rem;
+    align-items: start;
   }
 
   .about-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--terracotta);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
   }
 
   .about-heading {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 300;
     line-height: 1.2;
     color: var(--earth);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
-  .about-heading em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
+  .about-heading em { font-style: italic; color: var(--terracotta); }
 
-  .about-ornament {
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin-bottom: 2rem;
-  }
+  .about-ornament { width: 40px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
 
   .about-text p {
-    font-size: 0.95rem;
-    line-height: 1.95;
+    font-size: var(--fs-md);
+    line-height: 1.9;
     color: var(--soil);
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 1.2rem;
   }
 
-  .about-text p:last-child { margin-bottom: 0; }
-
-  .about-pillars {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-  }
+  .about-pillars { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
 
   .pillar-tag {
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(176,149,90,0.4);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    padding: 0.45rem 1rem;
+    border: 1px solid rgba(78,168,184,0.4);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--sage);
+    font-weight: 500;
   }
 
-  /* SECTION DIVIDER */
   .divider {
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(176,149,90,0.3), transparent);
-    margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(78,168,184,0.3), transparent);
   }
 
-  /* SERVICES */
   #services {
-    padding: 8rem 4rem;
+    padding: 6rem 3rem;
     background:
       radial-gradient(ellipse 70% 50% at 80% 50%, rgba(123,189,208,0.08) 0%, transparent 60%),
       radial-gradient(ellipse 50% 60% at 10% 80%, rgba(192,122,85,0.06) 0%, transparent 60%),
       var(--cream);
   }
 
-  .services-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 5rem;
-  }
+  .services-inner { max-width: 1100px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
 
   .section-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--terracotta);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
   }
 
   .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 300;
     color: var(--earth);
     line-height: 1.15;
   }
 
-  .section-title em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
+  .section-title em { font-style: italic; color: var(--terracotta); }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 
   .service-card {
     background: var(--cream);
-    padding: 3.5rem;
-    border: 1px solid rgba(176,149,90,0.18);
+    padding: 3rem;
+    border: 1px solid rgba(78,168,184,0.18);
     position: relative;
     transition: border-color 0.3s, transform 0.3s;
-    overflow: hidden;
   }
 
   .service-card::before {
@@ -319,212 +333,206 @@
   }
 
   .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { transform: translateY(-4px); border-color: rgba(176,149,90,0.4); }
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(78,168,184,0.4); }
 
   .service-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 300;
-    color: rgba(176,149,90,0.12);
+    color: rgba(78,168,184,0.12);
     line-height: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .service-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.9rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 400;
     color: var(--earth);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     line-height: 1.2;
   }
 
   .service-price {
     display: inline-block;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--terracotta);
     border: 1px solid rgba(192,122,85,0.4);
     padding: 0.35rem 0.9rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
   }
 
   .service-desc {
-    font-size: 0.92rem;
-    line-height: 1.9;
+    font-size: var(--fs-md);
+    line-height: 1.85;
     color: var(--soil);
-    font-weight: 300;
-    margin-bottom: 2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
   }
 
-  .service-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 
   .service-features li {
-    font-size: 0.83rem;
+    font-size: var(--fs-sm);
     color: var(--soil);
-    padding-left: 1.2rem;
+    padding-left: 1.5rem;
     position: relative;
-    font-weight: 300;
+    font-weight: 400;
+    line-height: 1.6;
   }
 
-  .service-features li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
+  .service-features li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
 
   .service-cta {
     display: inline-block;
     margin-top: 2rem;
-    padding: 0.75rem 2rem;
+    padding: 0.85rem 2rem;
     background: transparent;
     border: 1px solid var(--earth);
     color: var(--earth);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
+    font-weight: 600;
     transition: background 0.3s, color 0.3s;
   }
 
   .service-cta:hover { background: var(--earth); color: var(--cream); }
 
-  /* PHILOSOPHY STRIP */
-  .philosophy-strip {
-    background: var(--earth);
-    padding: 5rem 4rem;
-    text-align: center;
-  }
+  .philosophy-strip { background: var(--earth); padding: 5rem 3rem; text-align: center; }
 
   .philosophy-strip blockquote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 300;
     font-style: italic;
     color: var(--sand);
     max-width: 720px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .philosophy-strip cite {
     display: block;
     margin-top: 1.5rem;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.72rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: var(--fs-xs);
     font-style: normal;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--terracotta);
+    font-weight: 600;
   }
 
-  /* CONTACT */
   #contact {
-    padding: 8rem 4rem;
+    padding: 6rem 3rem;
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1.4fr;
-    gap: 6rem;
+    gap: 5rem;
     align-items: start;
   }
 
   .contact-info h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 300;
     color: var(--earth);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     line-height: 1.2;
   }
 
-  .contact-info h2 em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
+  .contact-info h2 em { font-style: italic; color: var(--terracotta); }
 
   .contact-info p {
-    font-size: 0.92rem;
-    line-height: 1.9;
+    font-size: var(--fs-md);
+    line-height: 1.85;
     color: var(--soil);
-    font-weight: 300;
-    margin-bottom: 2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-email-label {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
   }
 
   .contact-email {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 0.83rem;
+    display: block;
+    font-size: var(--fs-sm);
     color: var(--gold);
-    letter-spacing: 0.05em;
     text-decoration: none;
     transition: color 0.3s;
-    margin-bottom: 0.5rem;
+    word-break: break-all;
+    font-weight: 400;
   }
 
   .contact-email:hover { color: var(--terracotta); }
 
-  .contact-email-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 0.5rem;
+  .privacy-note {
+    margin-top: 2rem;
+    padding: 1.1rem 1.3rem;
+    background: rgba(78,168,184,0.07);
+    border-left: 3px solid var(--sage);
+    font-size: var(--fs-xs);
+    color: var(--soil);
+    line-height: 1.75;
+    border-radius: 0 2px 2px 0;
   }
 
-  /* FORM */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+  .privacy-note strong {
+    display: block;
+    color: var(--earth);
+    margin-bottom: 0.4rem;
+    font-size: var(--fs-sm);
+    font-weight: 600;
   }
 
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.4rem; }
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
 
   .form-group label {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--terracotta);
+    font-weight: 600;
   }
 
   .form-group input,
   .form-group select,
   .form-group textarea {
-    padding: 0.85rem 1rem;
-    background: transparent;
-    border: 1px solid rgba(176,149,90,0.35);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
+    padding: 0.9rem 1rem;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(78,168,184,0.35);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: var(--fs-md);
+    font-weight: 400;
     color: var(--text);
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, background 0.3s;
     -webkit-appearance: none;
+    border-radius: 2px;
+    width: 100%;
   }
 
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
-    border-color: var(--terracotta);
+    border-color: var(--sage);
+    background: rgba(255,255,255,0.95);
   }
 
   .form-group select {
@@ -532,41 +540,68 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8955A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
+    background-color: rgba(255,255,255,0.65);
     padding-right: 2.5rem;
-    background-color: var(--cream);
   }
 
-  .form-group textarea {
-    resize: vertical;
-    min-height: 130px;
-  }
+  .form-group textarea { resize: vertical; min-height: 140px; }
+
+  .booking-fields { display: none; flex-direction: column; gap: 1.4rem; }
+  .booking-fields.visible { display: flex; }
+
+  .field-note { font-size: var(--fs-xs); color: var(--sage); margin-top: 0.3rem; line-height: 1.6; }
+  .field-error { font-size: var(--fs-xs); color: #c0392b; margin-top: 0.3rem; display: none; line-height: 1.6; }
 
   .form-submit {
-    padding: 1rem 2.5rem;
+    padding: 1.1rem 2.5rem;
     background: var(--earth);
     color: var(--cream);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.73rem;
-    letter-spacing: 0.22em;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    font-weight: 600;
     border: none;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
     align-self: flex-start;
+    border-radius: 2px;
+    min-width: 180px;
   }
 
-  .form-submit:hover {
-    background: var(--terracotta);
-    transform: translateY(-2px);
+  .form-submit:hover { background: var(--terracotta); transform: translateY(-2px); }
+  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .form-success {
+    display: none;
+    padding: 1.4rem;
+    background: rgba(78,168,184,0.10);
+    border: 1px solid var(--sage);
+    font-size: var(--fs-sm);
+    color: var(--earth);
+    line-height: 1.7;
+    border-radius: 2px;
   }
 
-  /* FOOTER */
+  .form-error-msg {
+    display: none;
+    padding: 1.2rem;
+    background: rgba(192,57,43,0.08);
+    border: 1px solid #c0392b;
+    font-size: var(--fs-sm);
+    color: #c0392b;
+    border-radius: 2px;
+    line-height: 1.7;
+  }
+
   footer {
     background: var(--earth);
-    padding: 3rem 4rem;
+    padding: 2.5rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   .footer-brand {
@@ -577,25 +612,8 @@
     letter-spacing: 0.1em;
   }
 
-  .footer-copy {
-    font-size: 0.72rem;
-    color: rgba(232,213,183,0.5);
-    letter-spacing: 0.08em;
-  }
+  .footer-copy { font-size: var(--fs-xs); color: rgba(232,213,183,0.6); }
 
-  /* SUCCESS */
-  .form-success {
-    display: none;
-    padding: 1.2rem;
-    background: rgba(78,168,184,0.10);
-    border: 1px solid var(--sage);
-    font-size: 0.88rem;
-    color: var(--sage);
-    letter-spacing: 0.05em;
-    text-align: center;
-  }
-
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -603,35 +621,36 @@
 
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(28px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    .nav-links a { font-size: 0.7rem; }
-
-    #about { grid-template-columns: 1fr; gap: 2rem; padding: 5rem 1.5rem; }
-    .services-grid { grid-template-columns: 1fr; }
-    #services { padding: 5rem 1.5rem; }
-    .service-card { padding: 2.5rem; }
-    #contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    #home { padding: 6rem 1.5rem 3rem; }
+    #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+    #services { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .service-card { padding: 2rem; }
+    .service-card:hover { transform: none; }
+    .philosophy-strip { padding: 3.5rem 1.5rem; }
+    #contact { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
     .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
-    .philosophy-strip { padding: 4rem 1.5rem; }
+    .form-submit { width: 100%; text-align: center; align-self: stretch; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  @media (max-width: 400px) {
+    .hero-title { font-size: 2.6rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-brand">Pula Wellness Space</div>
   <ul class="nav-links">
@@ -639,9 +658,17 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#home" onclick="closeNav()">Home</a>
+  <a href="#services" onclick="closeNav()">Services</a>
+  <a href="#contact" onclick="closeNav()">Contact</a>
+</div>
+
 <section id="home">
   <p class="hero-name">Pheidah Ngoepe</p>
   <p class="hero-greeting">Welcome to</p>
@@ -650,7 +677,6 @@
   <a href="#services" class="hero-cta">Explore Offerings</a>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-left reveal">
     <p class="about-label">About This Space</p>
@@ -674,7 +700,6 @@
 
 <div class="divider"></div>
 
-<!-- SERVICES -->
 <section id="services">
   <div class="services-inner">
     <div class="section-header reveal">
@@ -683,7 +708,6 @@
     </div>
     <div class="services-grid">
 
-      <!-- SERVICE 1 -->
       <div class="service-card reveal">
         <div class="service-number">01</div>
         <h3 class="service-title">Intuitive &amp; Tarot Reading</h3>
@@ -698,12 +722,11 @@
         <a href="#contact" class="service-cta">Book a Reading</a>
       </div>
 
-      <!-- SERVICE 2 -->
       <div class="service-card reveal">
         <div class="service-number">02</div>
         <h3 class="service-title">Intuitive Reading with Monthly Support</h3>
         <span class="service-price">R2000 · 3-Month Container</span>
-        <p class="service-desc">Beginning with an intuitive reading, this offering unfolds into a 3-month container of support. The package includes the initial reading plus one monthly session per month for three months. Through sessions that weave together somatic practices, yoga, and breathwork, you will be guided to ground, to listen to your body, and to access your own intuition — so that it becomes a compass for wherever you are in life.</p>
+        <p class="service-desc">Beginning with an intuitive reading, this offering unfolds into a 3-month container of support. The package includes the initial reading plus one monthly session per month for three months. Through sessions that weave together somatic practices, yoga, and breathwork, you will be guided to ground, listen to your body, and access your own intuition.</p>
         <ul class="service-features">
           <li>Initial intuitive &amp; tarot reading</li>
           <li>3 monthly support sessions (once per month)</li>
@@ -719,7 +742,6 @@
   </div>
 </section>
 
-<!-- PHILOSOPHY STRIP -->
 <div class="philosophy-strip">
   <blockquote>
     "I believe people hold the answers within their own bodies, beings, and the wisdom of their guides — ancestors, angels, the elements of the earth. My role is to help you hear that."
@@ -727,84 +749,171 @@
   </blockquote>
 </div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-info reveal">
     <p class="about-label">Reach Out</p>
     <h2>Get in <em>Touch</em></h2>
-    <p>Whether you are ready to book, have a question, or simply want to know if this space is right for you — you are welcome here. Fill in the form and Pheidah will be in touch.</p>
+    <p>Whether you are ready to book, have a question, or simply want to know if this space is right for you — you are welcome here. Fill in the form and Pheidah will be in touch within 48 hours.</p>
     <p class="contact-email-label">Email</p>
     <a href="mailto:Pheidah@pulawellnessspace.com" class="contact-email">Pheidah@pulawellnessspace.com</a>
+
+    <div class="privacy-note">
+      <strong>🔒 Your privacy matters</strong>
+      The information you submit through this form is sent securely and is only accessible to Pheidah Ngoepe. Your personal details and email address will never be shared with or sold to any third party. All information is used solely to respond to your enquiry or booking request.
+    </div>
   </div>
 
   <div class="reveal">
-    <form class="contact-form" onsubmit="handleSubmit(event)">
+    <form class="contact-form" id="contactForm"
+          action="https://formspree.io/f/mlgoqvko"
+          method="POST">
+
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
       <div class="form-row">
         <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="Full name" required>
+          <input type="text" id="name" name="name" placeholder="Full name" required autocomplete="name">
         </div>
         <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <label for="email">Your Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
         </div>
       </div>
+
       <div class="form-group">
         <label for="service">Service of Interest</label>
-        <select id="service" name="service" required>
+        <select id="service" name="service" required onchange="toggleBooking(this.value)">
           <option value="" disabled selected>Select a service</option>
-          <option value="reading">Intuitive &amp; Tarot Reading — R500</option>
-          <option value="monthly">Intuitive Reading with Monthly Support</option>
-          <option value="unsure">Not sure yet — I'd like to enquire</option>
+          <option value="Intuitive and Tarot Reading - R650">Intuitive &amp; Tarot Reading — R650</option>
+          <option value="Intuitive Reading with Monthly Support - R2000">Intuitive Reading with Monthly Support — R2000</option>
+          <option value="General enquiry">Not sure yet — I'd like to enquire</option>
         </select>
       </div>
+
+      <div class="booking-fields" id="bookingFields">
+        <div class="form-group">
+          <label for="preferredDate">Preferred Sunday Date</label>
+          <input type="date" id="preferredDate" name="preferred_date">
+          <span class="field-note" id="dateNote">Sessions are available on Sundays only, between 9 AM and 5 PM South African time (SAST).</span>
+          <span class="field-error" id="dateError">Please select a Sunday — sessions are only available on Sundays.</span>
+        </div>
+        <div class="form-group">
+          <label for="preferredTime">Preferred Time (SAST)</label>
+          <select id="preferredTime" name="preferred_time">
+            <option value="" disabled selected>Select a time</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+          </select>
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="message">Your Message or Question</label>
-        <textarea id="message" name="message" placeholder="Share what's on your mind, what you're looking for, or how you'd like to book..."></textarea>
+        <textarea id="message" name="message" placeholder="Share what's on your mind, what you're looking for, or anything you'd like Pheidah to know before your session..."></textarea>
       </div>
-      <button type="submit" class="form-submit">Send Message</button>
-      <div class="form-success" id="successMsg">Thank you — your message has been received. Pheidah will be in touch with you soon.</div>
+
+      <button type="submit" class="form-submit" id="submitBtn">Send Message</button>
+
+      <div class="form-success" id="successMsg">
+        ✓ Thank you — your message has been received. If this is a booking request and it is confirmed, Pheidah will be in touch within 48 hours and an invoice will be sent to you.
+      </div>
+      <div class="form-error-msg" id="errorMsg">
+        Something went wrong. Please try again, or email Pheidah directly at Pheidah@pulawellnessspace.com
+      </div>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-brand">Pula Wellness Space</div>
   <div class="footer-copy">© 2026 · Pheidah@pulawellnessspace.com</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal
+<script>
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
         setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObserver.observe(el));
 
-  reveals.forEach(el => observer.observe(el));
-
-  // Form submission
-  function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const service = form.service.value;
-    const message = form.message.value;
-
-    // Compose mailto
-    const subject = encodeURIComponent(`Pula Wellness Enquiry – ${service}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:Pheidah@pulawellnessspace.com?subject=${subject}&body=${body}`;
-
-    document.getElementById('successMsg').style.display = 'block';
-    form.reset();
+  function toggleNav() {
+    document.getElementById('navToggle').classList.toggle('open');
+    document.getElementById('navDrawer').classList.toggle('open');
   }
+
+  function closeNav() {
+    document.getElementById('navToggle').classList.remove('open');
+    document.getElementById('navDrawer').classList.remove('open');
+  }
+
+  function toggleBooking(value) {
+    const fields = document.getElementById('bookingFields');
+    if (value && value !== 'General enquiry') {
+      fields.classList.add('visible');
+    } else {
+      fields.classList.remove('visible');
+    }
+  }
+
+  document.getElementById('preferredDate').addEventListener('change', function () {
+    const val = this.value;
+    if (!val) return;
+    const day = new Date(val + 'T00:00:00').getDay();
+    const errorMsg = document.getElementById('dateError');
+    const noteMsg  = document.getElementById('dateNote');
+    if (day !== 0) {
+      errorMsg.style.display = 'block';
+      noteMsg.style.display  = 'none';
+      this.value = '';
+    } else {
+      errorMsg.style.display = 'none';
+      noteMsg.style.display  = 'block';
+    }
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn        = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg   = document.getElementById('errorMsg');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    successMsg.style.display = 'none';
+    errorMsg.style.display   = 'none';
+
+    try {
+      const response = await fetch(this.action, {
+        method:  'POST',
+        body:    new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        this.reset();
+        document.getElementById('bookingFields').classList.remove('visible');
+        btn.textContent = 'Sent ✓';
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      errorMsg.style.display = 'block';
+      btn.disabled   = false;
+      btn.textContent = 'Send Message';
+    }
+  });
 </script>
 </body>
 </html>
