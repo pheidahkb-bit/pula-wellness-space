@@ -227,10 +227,39 @@
     padding: 6rem 3rem;
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
+    grid-template-columns: 1fr 1.4fr;
     gap: 5rem;
-    align-items: start;
+    align-items: center;
+  }
+
+  .about-photo-wrap {
+    position: relative;
+  }
+
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    border-radius: 2px;
+  }
+
+  .about-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 60%;
+    height: 60%;
+    border: 2px solid rgba(184,149,90,0.25);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: -1;
   }
 
   .about-label {
@@ -311,14 +340,14 @@
 
   .section-title em { font-style: italic; color: var(--terracotta); }
 
-  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
   .service-card {
     background: var(--cream);
-    padding: 3rem;
     border: 1px solid rgba(78,168,184,0.18);
     position: relative;
     transition: border-color 0.3s, transform 0.3s;
+    overflow: hidden;
   }
 
   .service-card::before {
@@ -334,6 +363,15 @@
 
   .service-card:hover::before { transform: scaleX(1); }
   .service-card:hover { transform: translateY(-4px); border-color: rgba(78,168,184,0.4); }
+
+  .service-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .service-body { padding: 2.5rem; }
 
   .service-number {
     font-family: 'Cormorant Garamond', serif;
@@ -498,9 +536,7 @@
   }
 
   .contact-form { display: flex; flex-direction: column; gap: 1.4rem; }
-
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-
   .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
 
   .form-group label {
@@ -632,10 +668,11 @@
     .nav-links { display: none; }
     .nav-toggle { display: flex; }
     #home { padding: 6rem 1.5rem 3rem; }
-    #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+    #about { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-photo-wrap::after { display: none; }
     #services { padding: 4rem 1.5rem; }
-    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .service-card { padding: 2rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 2rem; }
     .service-card:hover { transform: none; }
     .philosophy-strip { padding: 3.5rem 1.5rem; }
     #contact { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
@@ -678,23 +715,35 @@
 </section>
 
 <section id="about">
-  <div class="about-left reveal">
-    <p class="about-label">About This Space</p>
-    <h2 class="about-heading">You hold the<br><em>answers</em><br>within you.</h2>
-    <div class="about-ornament"></div>
-    <div class="about-pillars">
-      <span class="pillar-tag">Intuition</span>
-      <span class="pillar-tag">Pleasure</span>
-      <span class="pillar-tag">Joy</span>
-      <span class="pillar-tag">Somatic</span>
-      <span class="pillar-tag">Breathwork</span>
-      <span class="pillar-tag">Yoga</span>
+  <div class="about-grid reveal">
+
+    <div class="about-photo-wrap">
+      <img
+        src="pheidah.png"
+        alt="Pheidah Ngoepe — Pula Wellness Space"
+        class="about-photo"
+      />
     </div>
-  </div>
-  <div class="about-text reveal">
-    <p>Pula Wellness Space is a relational and growth space created by Pheidah - a black South AFrican human and wellness practitioner - whose own journey through practices including yoga, meditation, breathwork, somatic practices, and reflective journaling has shaped a deep conviction: that well-being is accessible, and that the path to it lives within each person. Their knowledge and skill background in the wellness space include training as a vinyasa yoga teacher and work as an intuitive/tarot reader, medical doctor and occupational therapist.</p>
-    <p>This space is not about prescribing answers. It is about creating the conditions for you to access the wisdom that already lives in your body, your mind, and your being. It is about helping you move through the world feeling grounded, supported, and authentically yourself.</p>
-    <p>The framework here is rooted in capacitating your nervous system through breath and movement practices and resourcing through connection to elements of nature and your spirit guides. The support you need already exists: within you, and around you.</p>
+
+    <div class="about-content">
+      <p class="about-label">About This Space</p>
+      <h2 class="about-heading">You hold the<br><em>answers</em><br>within you.</h2>
+      <div class="about-ornament"></div>
+      <div class="about-pillars">
+        <span class="pillar-tag">Intuition</span>
+        <span class="pillar-tag">Pleasure</span>
+        <span class="pillar-tag">Joy</span>
+        <span class="pillar-tag">Somatic</span>
+        <span class="pillar-tag">Breathwork</span>
+        <span class="pillar-tag">Yoga</span>
+      </div>
+      <div class="about-text" style="margin-top:2rem;">
+        <p>Pula Wellness Space is a relational and growth space created by Pheidah - a black South African human and wellness practitioner - whose own journey through practices including yoga, meditation, breathwork, somatic practices, and reflective journaling has shaped a deep conviction: that well-being is accessible, and that the path to it lives within each person. Their knowledge and skill background in the wellness space include training as a vinyasa yoga teacher and work as an intuitive/tarot reader, medical doctor and occupational therapist.</p>
+        <p>This space is not about prescribing answers. It is about creating the conditions for you to access the wisdom that already lives in your body, your mind, and your being. It is about helping you move through the world feeling grounded, supported, and authentically yourself.</p>
+        <p>The framework here is rooted in capacitating your nervous system through breath and movement practices and resourcing through connection to elements of nature and your spirit guides. The support you need already exists: within you, and around you.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -709,33 +758,47 @@
     <div class="services-grid">
 
       <div class="service-card reveal">
-        <div class="service-number">01</div>
-        <h3 class="service-title">Intuitive &amp; Tarot Reading</h3>
-        <span class="service-price">R650 · Online</span>
-        <p class="service-desc">An online reading that opens a space for you to explore who you are, what you are moving through, and what support or practices may be meaningful for you right now. Drawing on intuition and tarot, this session offers insight, reflection, and the opportunity to reconnect with your own inner knowing.</p>
-        <ul class="service-features">
-          <li>One-on-one, online session</li>
-          <li>Intuitive and tarot guidance</li>
-          <li>Exploration of what practices may support you</li>
-          <li>Space for self-reflection and grounding</li>
-        </ul>
-        <a href="#contact" class="service-cta">Book a Reading</a>
+        <img
+          src="Taror reading image.jpg"
+          alt="Intuitive and Tarot Reading"
+          class="service-img"
+        />
+        <div class="service-body">
+          <div class="service-number">01</div>
+          <h3 class="service-title">Intuitive &amp; Tarot Reading</h3>
+          <span class="service-price">R650 · Online</span>
+          <p class="service-desc">An online reading that opens a space for you to explore who you are, what you are moving through, and what support or practices may be meaningful for you right now. Drawing on intuition and tarot, this session offers insight, reflection, and the opportunity to reconnect with your own inner knowing.</p>
+          <ul class="service-features">
+            <li>One-on-one, online session</li>
+            <li>Intuitive and tarot guidance</li>
+            <li>Exploration of what practices may support you</li>
+            <li>Space for self-reflection and grounding</li>
+          </ul>
+          <a href="#contact" class="service-cta">Book a Reading</a>
+        </div>
       </div>
 
       <div class="service-card reveal">
-        <div class="service-number">02</div>
-        <h3 class="service-title">Intuitive Reading with Monthly Support</h3>
-        <span class="service-price">R2000 · 3-Month Container</span>
-        <p class="service-desc">Beginning with an intuitive reading, this offering unfolds into a 3-month container of support. The package includes the initial reading plus one monthly session per month for three months. Through sessions that weave together somatic practices, yoga, and breathwork, you will be guided to ground, listen to your body, and access your own intuition. Together we work towards you developing a set of practices that you can continue to use beyond this container, as you navigate the life you desire; in alignment with your unique purpose.</p>
-        <ul class="service-features">
-          <li>Initial intuitive &amp; tarot reading</li>
-          <li>3 monthly support sessions (once per month)</li>
-          <li>Somatic practices &amp; breathwork</li>
-          <li>Yoga to ground and reconnect</li>
-          <li>Support for authentic self-expression</li>
-          <li>Personalised to your journey</li>
-        </ul>
-        <a href="#contact" class="service-cta">Enquire Now</a>
+        <img
+          src="support image.png"
+          alt="Intuitive Reading with Monthly Support"
+          class="service-img"
+        />
+        <div class="service-body">
+          <div class="service-number">02</div>
+          <h3 class="service-title">Intuitive Reading with Monthly Support</h3>
+          <span class="service-price">R2000 · 3-Month Container</span>
+          <p class="service-desc">Beginning with an intuitive reading, this offering unfolds into a 3-month container of support. The package includes the initial reading plus one monthly session per month for three months. Through sessions that weave together somatic practices, yoga, and breathwork, you will be guided to ground, listen to your body, and access your own intuition. Together we work towards you developing a set of practices that you can continue to use beyond this container, as you navigate the life you desire; in alignment with your unique purpose.</p>
+          <ul class="service-features">
+            <li>Initial intuitive &amp; tarot reading</li>
+            <li>3 monthly support sessions (once per month)</li>
+            <li>Somatic practices &amp; breathwork</li>
+            <li>Yoga to ground and reconnect</li>
+            <li>Support for authentic self-expression</li>
+            <li>Personalised to your journey</li>
+          </ul>
+          <a href="#contact" class="service-cta">Enquire Now</a>
+        </div>
       </div>
 
     </div>
