@@ -4,29 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pula Wellness Space</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --earth: #0C174D;
+    --earth: #1E3A3A;
     --soil: #5C3D2E;
-    --terracotta: #C07A55;
+    --terracotta: #8DC26A;
     --sand: #E8D5B7;
     --cream: #F5F2EC;
-    --sage: #7BBDD0;
+    --sage: #4EA8B8;
     --gold: #B8955A;
     --sky: #7BBDD0;
     --text: #1A2A2A;
-    --fs-xs:   0.875rem;
-    --fs-sm:   1rem;
-    --fs-md:   1.0625rem;
-    --fs-lg:   1.125rem;
+    --fs-xs: 0.875rem;
+    --fs-sm: 1rem;
+    --fs-md: 1.0625rem;
+    --fs-lg: 1.125rem;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: var(--fs-md);
     line-height: 1.75;
     background: var(--cream);
@@ -44,7 +44,7 @@
     padding: 1rem 3rem;
     background: rgba(245,242,236,0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(123,189,208,0.2);
+    border-bottom: 1px solid rgba(141,194,106,0.25);
   }
 
   .nav-brand {
@@ -98,7 +98,7 @@
     top: 58px; left: 0; right: 0;
     background: rgba(245,242,236,0.98);
     padding: 1.5rem 2rem 2rem;
-    border-bottom: 1px solid rgba(123,189,208,0.2);
+    border-bottom: 1px solid rgba(141,194,106,0.2);
     z-index: 99;
     flex-direction: column;
     gap: 0;
@@ -112,7 +112,7 @@
     text-decoration: none;
     font-weight: 500;
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(123,189,208,0.15);
+    border-bottom: 1px solid rgba(141,194,106,0.15);
     letter-spacing: 0.05em;
   }
 
@@ -126,8 +126,8 @@
     padding: 7rem 1.5rem 4rem;
     position: relative;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(123,189,208,0.13) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 80% at 20% 80%, rgba(192,122,85,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(141,194,106,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 20% 80%, rgba(123,189,208,0.10) 0%, transparent 60%),
       var(--cream);
     overflow: hidden;
   }
@@ -137,7 +137,7 @@
     position: absolute;
     width: min(600px, 90vw); height: min(600px, 90vw);
     border-radius: 50%;
-    border: 1px solid rgba(123,189,208,0.15);
+    border: 1px solid rgba(141,194,106,0.15);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -148,7 +148,7 @@
     position: absolute;
     width: min(900px, 130vw); height: min(900px, 130vw);
     border-radius: 50%;
-    border: 1px solid rgba(123,189,208,0.08);
+    border: 1px solid rgba(141,194,106,0.08);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -221,7 +221,7 @@
     position: relative; z-index: 1;
   }
 
-  .hero-cta:hover { background: var(--terracotta); transform: translateY(-2px); }
+  .hero-cta:hover { background: var(--terracotta); color: var(--earth); transform: translateY(-2px); }
 
   #about {
     padding: 6rem 3rem;
@@ -257,7 +257,7 @@
     right: -12px;
     width: 60%;
     height: 60%;
-    border: 2px solid rgba(184,149,90,0.25);
+    border: 2px solid rgba(141,194,106,0.25);
     border-radius: 2px;
     pointer-events: none;
     z-index: -1;
@@ -297,7 +297,7 @@
 
   .pillar-tag {
     padding: 0.45rem 1rem;
-    border: 1px solid rgba(123,189,208,0.4);
+    border: 1px solid rgba(78,168,184,0.4);
     font-size: var(--fs-xs);
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -308,14 +308,14 @@
   .divider {
     width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(123,189,208,0.3), transparent);
+    background: linear-gradient(to right, transparent, rgba(141,194,106,0.35), transparent);
   }
 
   #services {
     padding: 6rem 3rem;
     background:
-      radial-gradient(ellipse 70% 50% at 80% 50%, rgba(123,189,208,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 60% at 10% 80%, rgba(192,122,85,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 50% at 80% 50%, rgba(141,194,106,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 10% 80%, rgba(123,189,208,0.07) 0%, transparent 60%),
       var(--cream);
   }
 
@@ -345,7 +345,7 @@
 
   .service-card {
     background: var(--cream);
-    border: 1px solid rgba(123,189,208,0.18);
+    border: 1px solid rgba(141,194,106,0.2);
     position: relative;
     transition: border-color 0.3s, transform 0.3s;
     overflow: hidden;
@@ -363,7 +363,7 @@
   }
 
   .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { transform: translateY(-4px); border-color: rgba(123,189,208,0.4); }
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(141,194,106,0.4); }
 
   .service-img {
     width: 100%;
@@ -378,7 +378,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 4.5rem;
     font-weight: 300;
-    color: rgba(123,189,208,0.12);
+    color: rgba(141,194,106,0.15);
     line-height: 1;
     margin-bottom: 1rem;
   }
@@ -397,8 +397,8 @@
     font-size: var(--fs-xs);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--terracotta);
-    border: 1px solid rgba(192,122,85,0.4);
+    color: #5A8A30;
+    border: 1px solid rgba(141,194,106,0.5);
     padding: 0.35rem 0.9rem;
     margin-bottom: 1.5rem;
     font-weight: 600;
@@ -458,12 +458,12 @@
   .philosophy-strip cite {
     display: block;
     margin-top: 1.5rem;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: var(--fs-xs);
     font-style: normal;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--terracotta);
+    color: #C8F08A;
     font-weight: 600;
   }
 
@@ -499,8 +499,8 @@
   .privacy-note {
     margin-top: 2rem;
     padding: 1.1rem 1.3rem;
-    background: rgba(123,189,208,0.07);
-    border-left: 3px solid var(--sage);
+    background: rgba(141,194,106,0.07);
+    border-left: 3px solid var(--terracotta);
     font-size: var(--fs-xs);
     color: var(--soil);
     line-height: 1.75;
@@ -532,8 +532,8 @@
   .form-group textarea {
     padding: 0.9rem 1rem;
     background: rgba(255,255,255,0.65);
-    border: 1px solid rgba(123,189,208,0.35);
-    font-family: 'Source Sans 3', sans-serif;
+    border: 1px solid rgba(141,194,106,0.35);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: var(--fs-md);
     font-weight: 400;
     color: var(--text);
@@ -547,7 +547,7 @@
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
-    border-color: var(--sage);
+    border-color: var(--terracotta);
     background: rgba(255,255,255,0.95);
   }
 
@@ -565,14 +565,14 @@
   .booking-fields { display: none; flex-direction: column; gap: 1.4rem; }
   .booking-fields.visible { display: flex; }
 
-  .field-note { font-size: var(--fs-xs); color: var(--sage); margin-top: 0.3rem; line-height: 1.6; }
+  .field-note { font-size: var(--fs-xs); color: var(--terracotta); margin-top: 0.3rem; line-height: 1.6; }
   .field-error { font-size: var(--fs-xs); color: #c0392b; margin-top: 0.3rem; display: none; line-height: 1.6; }
 
   .form-submit {
     padding: 1.1rem 2.5rem;
     background: var(--earth);
     color: var(--cream);
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: var(--fs-sm);
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -585,14 +585,14 @@
     min-width: 180px;
   }
 
-  .form-submit:hover { background: var(--terracotta); transform: translateY(-2px); }
+  .form-submit:hover { background: #5A8A30; transform: translateY(-2px); }
   .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   .form-success {
     display: none;
     padding: 1.4rem;
-    background: rgba(123,189,208,0.10);
-    border: 1px solid var(--sage);
+    background: rgba(141,194,106,0.10);
+    border: 1px solid var(--terracotta);
     font-size: var(--fs-sm);
     color: var(--earth);
     line-height: 1.7;
@@ -624,11 +624,11 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.2rem;
     font-weight: 400;
-    color: var(--sand);
+    color: #C8F08A;
     letter-spacing: 0.1em;
   }
 
-  .footer-copy { font-size: var(--fs-xs); color: rgba(232,213,183,0.6); }
+  .footer-copy { font-size: var(--fs-xs); color: rgba(200,240,138,0.5); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -698,15 +698,9 @@
 
 <section id="about">
   <div class="about-grid reveal">
-
     <div class="about-photo-wrap">
-      <img
-        src="pheidah.png"
-        alt="Pheidah Ngoepe — Pula Wellness Space"
-        class="about-photo"
-      />
+      <img src="pheidah.png" alt="Pheidah Ngoepe — Pula Wellness Space" class="about-photo"/>
     </div>
-
     <div class="about-content">
       <p class="about-label">About This Space</p>
       <h2 class="about-heading">You hold the<br><em>answers</em><br>within you.</h2>
@@ -725,7 +719,6 @@
         <p>The framework here is rooted in capacitating your nervous system through breath and movement practices and resourcing through connection to elements of nature and your spirit guides. The support you need already exists: within you, and around you.</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -740,11 +733,7 @@
     <div class="services-grid">
 
       <div class="service-card reveal">
-        <img
-          src="Taror reading image.jpg"
-          alt="Intuitive and Tarot Reading"
-          class="service-img"
-        />
+        <img src="Taror reading image.jpg" alt="Intuitive and Tarot Reading" class="service-img"/>
         <div class="service-body">
           <div class="service-number">01</div>
           <h3 class="service-title">Intuitive &amp; Tarot Reading</h3>
@@ -761,11 +750,7 @@
       </div>
 
       <div class="service-card reveal">
-        <img
-          src="support image.png"
-          alt="Intuitive Reading with Monthly Support"
-          class="service-img"
-        />
+        <img src="support image.png" alt="Intuitive Reading with Monthly Support" class="service-img"/>
         <div class="service-body">
           <div class="service-number">02</div>
           <h3 class="service-title">Intuitive Reading with Monthly Support</h3>
@@ -800,7 +785,6 @@
     <p class="about-label">Reach Out</p>
     <h2>Get in <em>Touch</em></h2>
     <p>Whether you are ready to book, have a question, or simply want to know if this space is right for you — you are welcome here. Fill in the form and Pheidah will be in touch within 48 hours.</p>
-
     <div class="privacy-note">
       <strong>🔒 Your privacy matters</strong>
       The information you submit through this form is sent securely and is only accessible to Pheidah Ngoepe. Your personal details and email address will never be shared with or sold to any third party. All information is used solely to respond to your enquiry or booking request.
