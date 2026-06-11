@@ -1,0 +1,511 @@
+Here is the complete Wellness Corner code — press and hold to select all, then copy:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness Corner — Pula Wellness Space</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --earth: #1E3A3A;
+    --soil: #5C3D2E;
+    --terracotta: #8DC26A;
+    --sand: #E8D5B7;
+    --cream: #F5F2EC;
+    --sage: #4EA8B8;
+    --gold: #B8955A;
+    --sky: #7BBDD0;
+    --text: #1A2A2A;
+    --fs-xs: 0.875rem;
+    --fs-sm: 1rem;
+    --fs-md: 1.0625rem;
+    --fs-lg: 1.125rem;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--fs-md);
+    line-height: 1.75;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(245,242,236,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(141,194,106,0.25);
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--earth);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+  .nav-links a {
+    font-size: var(--fs-sm);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--soil);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--terracotta); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--earth);
+    transition: all 0.3s;
+  }
+
+  .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .nav-drawer {
+    display: none;
+    position: fixed;
+    top: 58px; left: 0; right: 0;
+    background: rgba(245,242,236,0.98);
+    padding: 1.5rem 2rem 2rem;
+    border-bottom: 1px solid rgba(141,194,106,0.2);
+    z-index: 99;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-drawer.open { display: flex; }
+
+  .nav-drawer a {
+    font-size: var(--fs-lg);
+    color: var(--earth);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(141,194,106,0.15);
+    letter-spacing: 0.05em;
+  }
+
+  .page-hero {
+    padding: 8rem 3rem 4rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .page-label {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .page-title em { font-style: italic; color: var(--terracotta); }
+
+  .page-intro {
+    font-size: var(--fs-md);
+    color: var(--soil);
+    line-height: 1.9;
+    max-width: 620px;
+    margin: 0 auto 1rem;
+  }
+
+  .page-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 2rem auto 0;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(141,194,106,0.35), transparent);
+    margin: 0;
+  }
+
+  #podcast {
+    padding: 5rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-eyebrow-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(141,194,106,0.3);
+  }
+
+  .section-eyebrow-label {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
+    color: var(--earth);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .section-title em { font-style: italic; color: var(--terracotta); }
+
+  .section-sub {
+    font-size: var(--fs-md);
+    color: var(--soil);
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    max-width: 680px;
+  }
+
+  .podcast-about {
+    background: rgba(141,194,106,0.07);
+    border-left: 3px solid var(--terracotta);
+    padding: 1.4rem 1.6rem;
+    border-radius: 0 2px 2px 0;
+    margin-bottom: 3rem;
+    font-size: var(--fs-md);
+    color: var(--soil);
+    line-height: 1.85;
+  }
+
+  .episode-card {
+    background: white;
+    border: 1px solid rgba(141,194,106,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .episode-card:hover {
+    border-color: rgba(141,194,106,0.4);
+    box-shadow: 0 4px 20px rgba(30,58,58,0.08);
+  }
+
+  .episode-header {
+    padding: 1.8rem 2rem 1.2rem;
+    border-bottom: 1px solid rgba(141,194,106,0.15);
+  }
+
+  .episode-number {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .episode-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--earth);
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+
+  .episode-desc {
+    font-size: var(--fs-sm);
+    color: var(--soil);
+    line-height: 1.8;
+  }
+
+  .episode-player {
+    padding: 1.2rem 2rem 1.8rem;
+  }
+
+  .episode-player iframe {
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+  }
+
+  .spotify-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+
+  .spotify-link:hover { color: var(--earth); }
+
+  #reflections {
+    padding: 4rem 3rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .coming-soon {
+    border: 1px dashed rgba(141,194,106,0.35);
+    border-radius: 4px;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .coming-soon-icon { font-size: 2rem; margin-bottom: 1rem; opacity: 0.5; }
+
+  .coming-soon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--earth);
+    margin-bottom: 0.6rem;
+  }
+
+  .coming-soon-text {
+    font-size: var(--fs-sm);
+    color: var(--soil);
+    opacity: 0.7;
+    line-height: 1.8;
+  }
+
+  .disclaimer {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 3rem;
+    font-size: var(--fs-xs);
+    color: var(--soil);
+    opacity: 0.6;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  footer {
+    background: var(--earth);
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #C8F08A;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-copy { font-size: var(--fs-xs); color: rgba(200,240,138,0.5); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .page-hero { padding: 7rem 1.5rem 3rem; }
+    #podcast { padding: 3.5rem 1.5rem; }
+    #reflections { padding: 3rem 1.5rem 4rem; }
+    .disclaimer { padding: 0 1.5rem; }
+    .episode-header { padding: 1.4rem 1.4rem 1rem; }
+    .episode-player { padding: 1rem 1.4rem 1.4rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Pula Wellness Space</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="wellness-corner.html" class="active">Wellness Corner</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html" onclick="closeNav()">Home</a>
+  <a href="index.html#services" onclick="closeNav()">Services</a>
+  <a href="wellness-corner.html" onclick="closeNav()">Wellness Corner</a>
+  <a href="index.html#contact" onclick="closeNav()">Contact</a>
+</div>
+
+<div class="page-hero reveal">
+  <p class="page-label">A space to explore</p>
+  <h1 class="page-title">Wellness <em>Corner</em></h1>
+  <p class="page-intro">A space for honest, pluralistic conversations about well-being — through listening and through reading. Come as you are.</p>
+  <div class="page-divider"></div>
+</div>
+
+<div class="divider"></div>
+
+<section id="podcast">
+
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <div class="section-eyebrow-label">🎙 Listen</div>
+    <div class="section-eyebrow-line"></div>
+  </div>
+
+  <h2 class="section-title reveal">Pula Wellness Space <em>Podcast</em></h2>
+
+  <p class="section-sub reveal">Conversations about well-being — what it means, how we access it, and what it looks like to move through the world feeling grounded, supported and authentically yourself.</p>
+
+  <div class="podcast-about reveal">
+    A space for honest, pluralistic conversations about well-being — what it means, how we access it, and what it looks like to move through the world feeling grounded, supported and authentically yourself. Hosted by Pheidah Ngoepe — wellness practitioner, yoga teacher, intuitive reader, medical doctor and occupational therapist — this podcast draws from a wide range of knowledge traditions, both ancient and contemporary, to explore what it truly means to be well. Come as you are.
+  </div>
+
+  <div class="episode-card reveal">
+    <div class="episode-header">
+      <div class="episode-number">Episode 01</div>
+      <div class="episode-title">Go itheeletša — The art of tuning in</div>
+      <p class="episode-desc">In this first episode we explore the Sepedi concept of Go itheeletša — taking the time to be present, to connect to your senses, and to tune into the wisdom that lives in your body. Through the lens of this beautiful concept from the Sepedi language, we explore why presence and sensory awareness are not just practices of mindfulness but a crucial entry point into understanding and accessing your own well-being.</p>
+    </div>
+    <div class="episode-player">
+      <iframe
+        src="https://open.spotify.com/embed/episode/1yXIEikEMdv071tkynU4iW"
+        width="100%"
+        height="152"
+        frameborder="0"
+        allowtransparency="true"
+        allow="encrypted-media"
+        loading="lazy">
+      </iframe>
+      <a href="https://open.spotify.com/episode/1yXIEikEMdv071tkynU4iW" target="_blank" class="spotify-link">
+        ↗ Open on Spotify
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<section id="reflections">
+
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <div class="section-eyebrow-label">✍ Read</div>
+    <div class="section-eyebrow-line"></div>
+  </div>
+
+  <h2 class="section-title reveal">Written <em>Reflections</em></h2>
+  <p class="section-sub reveal">Thoughts, perspectives and explorations on well-being — in writing.</p>
+
+  <div class="coming-soon reveal">
+    <div class="coming-soon-icon">🌿</div>
+    <div class="coming-soon-title">Coming soon</div>
+    <p class="coming-soon-text">Written reflections will be shared here. Check back soon.</p>
+  </div>
+
+</section>
+
+<p class="disclaimer">
+  The content shared on the Pula Wellness Space Podcast and in this Wellness Corner is for educational and informational purposes only. It does not constitute medical, psychological or health advice and should not be treated as such. Please consult a qualified healthcare professional for any health concerns.
+</p>
+
+<footer>
+  <div class="footer-brand">Pula Wellness Space</div>
+  <div class="footer-copy">© 2026 · Pula Wellness Space</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  function toggleNav() {
+    document.getElementById('navToggle').classList.toggle('open');
+    document.getElementById('navDrawer').classList.toggle('open');
+  }
+
+  function closeNav() {
+    document.getElementById('navToggle').classList.remove('open');
+    document.getElementById('navDrawer').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
